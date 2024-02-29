@@ -29,21 +29,7 @@ const arrayOfJoinTags = arrayImages.join(" ");
 listImages.insertAdjacentHTML("beforeend", arrayOfJoinTags); 
 // *** Добавление разметки картинок в HTML - конец
 
-
-// Слушатель клика по картинке
-listImages.addEventListener('click', hendleClick); 
-
-// *** Обработчик клика по картинке - начало
-function hendleClick(event) {
-    // Блокирование действий по умолчанию
-    event.preventDefault(); 
-
-    // Блокирование действий при клике не по картинке
-    if (event.target.nodeName !== "IMG") {
-        return;
-    }
-
-    // Код модального окна для большой картинки
+// Код модального окна для большой картинки
     const lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
         captionSelector: 'img',
@@ -53,7 +39,5 @@ function hendleClick(event) {
         captionDelay: 250,
         captionClass: "",
     });
-};
-// *** Обработчик клика по картинке - конец
 
 console.log(galleryItems);

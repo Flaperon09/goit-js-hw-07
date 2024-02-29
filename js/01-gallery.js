@@ -54,15 +54,28 @@ function hendleClick(event) {
     <div class="modal">
         <img src="${selectedImageLink}" alt="${selectedImageAlt}"/>
     </div>
-    `)
-    instance.show()
-    
-    // Закрытие модального окна по клавише Escape
-    document.addEventListener("keydown", event => {
-        if(event.key === "Escape") {
-            instance.close();
-        };
-    });
+    `,
+        {
+        // Закрытие модального окна по клавише Escape
+        onShow: (instance) => {
+            // Добавление слушателя перед открытием модального окна
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape") {
+                    instance.close();
+                };
+            });
+        },
+
+        onClose: (instance) => {
+            // Удаление слушателя перед закрытием модального окна
+            document.removeEventListener("keydown", event => {
+                if(event.key === "Escape") {
+                    instance.close();
+                };
+            });
+        }
+    })
+    instance.show()   
 };
 // *** Обработчик клика по картинке - конец
 
