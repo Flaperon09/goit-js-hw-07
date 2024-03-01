@@ -43,6 +43,13 @@ function hendleClick(event) {
         return;
     }
 
+    // Функция закрытия модального окна по Escape
+    const clickEscape = (event) => {
+    if(event.key === "Escape") {
+        instance.close();
+        }
+    };
+
     // Ссылка на большую картинку из data-set
     const selectedImageLink = event.target.dataset.source;
 
@@ -59,24 +66,18 @@ function hendleClick(event) {
         // Закрытие модального окна по клавише Escape
         onShow: (instance) => {
             // Добавление слушателя перед открытием модального окна
-            document.addEventListener("keydown", event => {
-                if (event.key === "Escape") {
-                    instance.close();
-                };
-            });
+                document.addEventListener("keydown", clickEscape);
         },
 
         onClose: (instance) => {
             // Удаление слушателя перед закрытием модального окна
-            document.removeEventListener("keydown", event => {
-                if(event.key === "Escape") {
-                    instance.close();
-                };
-            });
+            document.removeEventListener("keydown", clickEscape);
         }
     })
-    instance.show()   
+    instance.show() 
 };
 // *** Обработчик клика по картинке - конец
+
+
 
 console.log(galleryItems);
